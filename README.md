@@ -43,7 +43,11 @@ Basándonos en el modelo de datos de Tweetssandra visto en clase, implemente las
     
     INSERT INTO tweets(tweet_id, username, body) VALUES(d38af38c-b2fa-4fc2-ad81-fd68eb0cd08b, 'pperez', 'Este es mi primer tweet');
     
-    INSERT INTO userline(username, time, body, tweet_id) VALUES('pperez', now(), 'Este es mi primer tweet', d38af38c-b2fa-4fc2-ad81-fd68eb0cd08b);
+    INSERT INTO userline(username, time, body, tweet_id) VALUES('pperez', 1d7d544c-f239-11e7-97bf-6f6e6c696e65, 'Este es mi primer tweet', d38af38c-b2fa-4fc2-ad81-fd68eb0cd08b);
+    
+    INSERT INTO tweets(tweet_id, username, body) VALUES(2f56264d-a865-407a-9fdf-f500dc41c624, 'pperez', 'Este es mi segundo tweet');
+    
+    INSERT INTO userline(username, time, body, tweet_id) VALUES('pperez', 7d51451a-f598-11e7-95a7-6f6e6c696e65, 'Este es mi segundo tweet', 2f56264d-a865-407a-9fdf-f500dc41c624);
     
     INSERT INTO followers(username, follower, since) VALUES('pperez', 'jgomez', '2018-01-15 21:00');
     
@@ -67,12 +71,12 @@ comente el tweet de otro.
 > Inserción de comentarios
 ```
   INSERT INTO tweets(tweet_id, username, body) VALUES(203145bd-c7c5-4ccf-a561-aea62dd2a7cc, 'jgomez', 'Felicidades y bienvenido');
-  INSERT INTO userline(username, time, body, tweet_id) VALUES('jgomez', 1d7d544c-f239-11e7-97bf-6f6e6c696e65, 'Felicidades y bienvenido', 203145bd-c7c5-4ccf-a561-aea62dd2a7cc);
-  INSERT INTO comments( tweet_id, comment_id, tweet_username, tweet_name, tweet_body, comment_username, comment_name, comment_body, tweet_time) VALUES(d38af38c-b2fa-4fc2-ad81-fd68eb0cd08b, 203145bd-c7c5-4ccf-a561-aea62dd2a7cc, 'pperez', 'Pepe Perez', 'Este es mi primer tweet', 'jgomez', 'Juan Gomez', 'Felicidades y bienvenido', ac05a89a-f23e-11e7-89f7-6f6e6c696e65);
+  INSERT INTO userline(username, time, body, tweet_id) VALUES('jgomez', eff08a42-f58c-11e7-8549-6f6e6c696e65, 'Felicidades y bienvenido', 203145bd-c7c5-4ccf-a561-aea62dd2a7cc);
+  INSERT INTO comments( tweet_id, comment_id, tweet_username, tweet_name, tweet_body, comment_username, comment_name, comment_body, tweet_time) VALUES(d38af38c-b2fa-4fc2-ad81-fd68eb0cd08b, 203145bd-c7c5-4ccf-a561-aea62dd2a7cc, 'pperez', 'Pepe Perez', 'Este es mi primer tweet', 'jgomez', 'Juan Gomez', 'Felicidades y bienvenido', 1d7d544c-f239-11e7-97bf-6f6e6c696e65);
 
   INSERT INTO tweets(tweet_id, username, body) VALUES(fac512af-1dae-4903-a3c6-51f699a1ffc1, 'egarcia', 'Te has tardado');
-  INSERT INTO userline(username, time, body, tweet_id) VALUES('egarcia', eff08a42-f58c-11e7-8549-6f6e6c696e65, 'Te has tardado', fac512af-1dae-4903-a3c6-51f699a1ffc1);
-  INSERT INTO comments( tweet_id, comment_id, tweet_username, tweet_name, tweet_body, comment_username, comment_name, comment_body, tweet_time) VALUES(d38af38c-b2fa-4fc2-ad81-fd68eb0cd08b, fac512af-1dae-4903-a3c6-51f699a1ffc1, 'pperez', 'Pepe Perez', 'Este es mi primer tweet', 'egarcia', 'Eva Garcia', 'Te has tardado', eff08a42-f58c-11e7-8549-6f6e6c696e65);
+  INSERT INTO userline(username, time, body, tweet_id) VALUES('egarcia', 8eb2487c-f598-11e7-b29f-6f6e6c696e65, 'Te has tardado', fac512af-1dae-4903-a3c6-51f699a1ffc1);
+  INSERT INTO comments( tweet_id, comment_id, tweet_username, tweet_name, tweet_body, comment_username, comment_name, comment_body, tweet_time) VALUES(d38af38c-b2fa-4fc2-ad81-fd68eb0cd08b, fac512af-1dae-4903-a3c6-51f699a1ffc1, 'pperez', 'Pepe Perez', 'Este es mi segundo tweet', 'egarcia', 'Eva Garcia', 'Gracias por mantenernos informados!', 7d51451a-f598-11e7-95a7-6f6e6c696e65);
 ```
  3. Visualizar todos los tweets que Pepe Pérez haya realizado durante el mes de enero junto con sus respectivos comentarios y autores de los mismos.
 ```
@@ -88,7 +92,7 @@ comente el tweet de otro.
 ```
 > Query para seleccionar los seguidores de Pepe Perez
 ```
-  SELECT follower_name, follower FROM followers WHERE username= 'pperez'
+  SELECT follower_name, follower FROM followers WHERE username= 'pperez';
 ```
  5. Mostrar el nombre de usuario de todas las personas a las que sigue Juan Gómez (realice las modificaciones oportunas en el modelo de datos, si fueran necesarias).
 > Modificacion de la tabla **friends**
@@ -100,5 +104,5 @@ comente el tweet de otro.
 ```
 > Query para seleccionar los amigos de Juan Gomez
 ```
-  SELECT friend_name, friend FROM Friends WHERE username_name= 'jgomez';
+  SELECT friend_name, friend FROM Friends WHERE username= 'jgomez';
 ```
